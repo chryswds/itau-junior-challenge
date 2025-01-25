@@ -15,7 +15,7 @@ public class StatisticsController {
 
     private final StatisticsService statisticsService;
 
-    public ResponseEntity<StatisticsResponseDTO> getStatistics(@RequestParam(value = "Search Range", required = false) Integer Timestamp) {
-        return ResponseEntity.ok(statisticsService.getStatistics(searchTimestamp));
+    public ResponseEntity<StatisticsResponseDTO> getStatistics(@RequestParam(value = "Search Range", required = false, defaultValue = "60") Integer Timestamp) {
+        return ResponseEntity.ok(statisticsService.getStatistics(Timestamp));
     }
 }
