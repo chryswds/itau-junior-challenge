@@ -32,4 +32,9 @@ public class TransactionService {
 
         transactions.add(dto);
     }
+
+    public void deleteTransaction() {
+        log.info("Transaction deleted");
+        transactions.clear();
+    }
 }
