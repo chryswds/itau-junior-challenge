@@ -37,4 +37,14 @@ public class TransactionService {
         log.info("Transaction deleted");
         transactions.clear();
     }
+
+    public List<RequestTransactionDTO> searchTransaction(Integer searchTimestamp) {
+        log.info("Transaction searched");
+        OffsetDateTime period = OffsetDateTime.now().minusSeconds(searchTimestamp);
+
+        return transactions.stream()
+                .filter(transaction -> transaction.timestamp().isAfter(period))
+                .toList();
+
+    }
 }
