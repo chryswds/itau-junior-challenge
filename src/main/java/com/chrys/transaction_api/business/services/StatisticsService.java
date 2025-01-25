@@ -21,6 +21,10 @@ public class StatisticsService {
         log.info("Transaction statistics process started - " + searchTimestamp);
         List<RequestTransactionDTO> transactions = transactionService.searchTransaction(searchTimestamp);
 
+        if(transactions.isEmpty()) {
+            log.info("No transactions found");
+            return new StatisticsResponseDTO(0L, 0.0, 0.0, 0.0, 0.0);
+        }
         DoubleSummaryStatistics statistics = transactions.stream()
                 .mapToDouble(RequestTransactionDTO::value)
                 .summaryStatistics();
